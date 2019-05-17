@@ -1,5 +1,7 @@
 package com.ggman.until;
 
+import com.ggman.entity.Page;
+import com.ggman.service.lmpl.HttpcilentDownLoadService;
 import org.apache.http.HttpEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
@@ -17,17 +19,26 @@ public class PageDownLoadUntil {
      * @param args
      */
     public static void main(String[] args) {
-        String url = "http://localhost:8080/m/index";
+       /* String url = "https://www.bilibili.com/video/av47124593?t=835&p=7";
         String content = PageDownLoadUntil.getPageContent(url);
-        System.out.println(content);
+
+        HttpcilentDownLoadService down = new HttpcilentDownLoadService();
+        Page page =down.downLoadService(url) ;
+
+        System.out.println(page.getContent());*/
     }
 
-
+    /**
+     * 发送获取请求
+     * @param url
+     * @return
+     */
     public static String getPageContent(String url ){
         HttpClientBuilder builder = HttpClients.custom();
         CloseableHttpClient client = builder.build();
 
         HttpGet request = new HttpGet(url);
+        //设置请求头，以浏览器为操作
         request.setHeader("User-Agent", "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/63.0.3239.84 Safari/537.36");
         String content = null;
         try {
